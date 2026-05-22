@@ -31,5 +31,6 @@ The framework is strictly decoupled and deterministically reproducible across th
 ├── App.R                # Core Production Shiny Dashboard Engine
 ├── extract_plots.R      # Headless pipeline script for batch figure generation
 ├── loan_book.csv        # Provided historical credit data (train/test sets)
+├── DataQuest.pdf        # The summary of the model architecture
 ├── LICENSE              # Repository MIT License
 └── README.md            # Repository documentation and deployment guide
