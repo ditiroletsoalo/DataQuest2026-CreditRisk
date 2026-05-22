@@ -1,37 +1,35 @@
-# DataQuest 2026: Championship Credit Risk App & Interpretable Models
+# DataQuest 2026: Institutional Credit Risk Engine & Calibrated Scorecard
 
 [![Shiny App](https://img.shields.io/badge/ShinyApp-Live-emerald?style=flat&logo=r)](http://ditiroletsoalo.shinyapps.io/DataQuest26-CreditRisk/)
 [![R-Version](https://img.shields.io/badge/R-%E2%89%A5%204.1.0-blue)](https://www.r-project.org/)
 [![License](https://img.shields.io/badge/License-MIT-gray.svg)](LICENSE)
 
-An end-to-end regulatory-compliant Credit Risk Analytics platform built for **DataQuest 2026**. This project implements a fully reproducible data science pipeline that builds, calibrates, explains, and deploys an interpretable credit scoring model under real-world banking constraints.
+An end-to-end regulatory-compliant Credit Risk Analytics platform built for the **DataQuest 2026 Hackathon hosted by First National Bank (FNB)**. This repository houses a fully reproducible data science pipeline that ingests the provided historical credit dataset, addresses severe class imbalances, optimizes retail underwriting boundaries, and maps predictive parameters directly into an operational credit scorecard under simulated banking governance constraints.
 
-**🔗 Live Application:** [ditiroletsoalo.shinyapps.io/DataQuest26-CreditRisk/](http://ditiroletsoalo.shinyapps.io/DataQuest26-CreditRisk/)
+**🔗 Live Production App:** [ditiroletsoalo.shinyapps.io/DataQuest26-CreditRisk/](http://ditiroletsoalo.shinyapps.io/DataQuest26-CreditRisk/)
 
 ---
 
-## 📌 Project Overview
+## 📌 Context & Framework Design
 
- Lenders require high predictive performance but face strict regulatory mandates (e.g., Basel IV, Equal Credit Opportunity Act) that forbid uninterpretable "black-box" models (like Random Forests or Neural Networks). 
+Deploying risk capital onto a bank's balance sheet requires balancing credit asset book growth with strict risk appetite boundaries. This platform simulates an automated credit underwriting engine calibrated to evaluate retail term loan facilities while aligning with international regulatory guidelines (Basel IV) and local credit legislation (such as Section 62 of the South African National Credit Act).
 
-This project solves this trade-off by taking a raw historical loan book, performing rigorous Exploratory Data Analysis (EDA), and building an advanced **Champion Logistic Regression Model**. Through domain-informed feature engineering and independent threshold optimization via **Youden’s J-statistic**, the final Champion model achieves a **0.7977 AUC** (up from the 0.68 baseline), matching the performance of non-linear machine learning architectures while retaining 100% mathematical interpretability.
+### The Modeling Constraint
+While high-dimensional non-linear machine learning architectures (such as Gradient Boosting or Neural Networks) offer strong predictive capabilities, they face severe deployment restrictions in production-level lending due to strict transparency mandates regarding credit denials. 
 
-### Key Pipeline Milestones
-1. **Interactive Exploratory Data Analysis (EDA):** Dynamic tracking of class imbalance (15.4% overall default rate) and deep feature-risk profiling.
-2. **Advanced Feature Engineering:** Natural cubic splines for non-linear age effects, log transformations, credit utilization flags, and interaction terms.
-3. **Multi-Model Calibration:** Rigorous evaluation of Baseline, Champion (Unweighted), and Cost-Sensitive (Weighted) models using independent Youden thresholds.
-4. **Credit Scorecard Generation:** Conversion of log-odds coefficients into a transparent 600-point retail scorecard with a Points-to-Double-Odds (PDO) of 20.
-5. **Adverse Action & Explainability:** Automated generation of regulatory Top-3 Denial Reasons notices backed by an interactive stateful **AI Credit Analyst Chatbot**.
+To solve this friction point, this framework enhances the baseline logistic regression engine by:
+1. **Isolating Non-Linear Risks:** Employing natural cubic splines to capture non-linear age effects and macroeconomic risk behaviors.
+2. **Dynamic Risk-Appetite Calibration:** Utilizing **Youden's J-Statistic** to establish an optimal credit underwriting cut-off, matching the default-capture performance of cost-sensitive architectures while retaining 100% parameter transparency.
 
 ---
 
 ## 🛠️ Repository Structure & Core Modules
 
-The framework is strictly decoupled and deterministically reproducible across three key core files:
+The framework is strictly decoupled and deterministically reproducible across three core analytical components:
 
 ```text
-├── App.R                # Core Interactive Shiny Application Engine
-├── extract_plots.R      # Automated pipeline script to batch-generate figures
-├── main (3).tex         # Comprehensive LaTeX research report source
-├── loan_book.csv        # Historical credit data (split into train/test sets)
-└── README.md            # Repository and reproducibility guide
+├── App.R                # Core Production Shiny Dashboard Engine
+├── extract_plots.R      # Headless pipeline script for batch figure generation
+├── loan_book.csv        # Provided historical credit data (train/test sets)
+├── LICENSE              # Repository MIT License
+└── README.md            # Repository documentation and deployment guide
